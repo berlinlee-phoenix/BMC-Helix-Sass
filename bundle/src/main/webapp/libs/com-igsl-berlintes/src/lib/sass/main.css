@@ -1,0 +1,766 @@
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+/* Animations */
+/* For Upper header */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10rem, -40rem, 0); /* 100px, 400px, 0 */
+  }
+  25% {
+    transform: translate3d(-28.8rem, -24rem, 0) rotate(350deg); /* 288px, 240px, 0 */
+  }
+  40% {
+    transform: translate3d(0, 0, 0);
+  }
+  60% {
+    transform: translate3d(28.8rem, -24rem, 0) rotate(180deg); /* 288px, 240px, 0 */
+  }
+  80% {
+    transform: translate3d(0, -40rem, 0) rotate(360deg); /* 0, 400px, 0 */
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); /* 100px */
+  }
+  80% {
+    transform: translateX(-1rem); /* 10px */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* for Discover our tour button */
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3.2rem); /* 32px */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Normalize browsers - Basic Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* font-size: 10px;
+  now 1rem = 10px
+  font-size: 100% => 16px
+
+  62.5% * 16px = 10px = 1rem
+  */
+  font-size: 62.5%;
+}
+
+/* To be inherited by child elements */
+body {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 1rem; */
+  line-height: 1.7;
+  color: rgb(84, 87, 37);
+  padding: 3rem; /* 30px */
+  box-sizing: border-box;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* Remove shaky behaviour in children animations */
+  backface-visibility: hidden;
+  margin-bottom: 6rem; /* 60px */
+}
+.heading-primary--main {
+  display: block; /* <span> is inline by default */
+  font-size: 6rem; /* 60px */
+  font-weight: 400;
+  letter-spacing: 3.5rem; /* 35px */
+  /* Animation */
+  animation-name: moveInLeft;
+  animation-duration: 6s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+}
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem; /* 20px */
+  font-weight: 700;
+  letter-spacing: 1.74rem; /* 17.4px */
+  /* Animation */
+  animation-iteration-count: 1;
+  animation: moveInRight 6s ease-out;
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, rgb(240, 240, 210), rgb(220, 210, 170));
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+}
+.heading-secondary:hover {
+  transform: skewY(2deg) skewX(15deg) scale(1.1);
+  text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+}
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 2rem !important;
+}
+
+.u-margin-top-small {
+  maring-top: 3rem !important;
+}
+
+.u-margin-top-big {
+  margin-top: 8rem !important;
+}
+
+.u-margin-top-huge {
+  margin-top: 10rem !important;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  overflow: hidden;
+}
+.bg-video__content {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.btn {
+  /* 
+  Initial State of pseudo element
+  .btn = parent
+  .btn::after = child
+  */
+  /* Only Discover our tour button will have animation */
+}
+.btn, .btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem; /* 15px 40px */
+  display: inline-block;
+  border-radius: 10rem; /* 100px */
+  transition: all 0.1s ease-in;
+  position: relative;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: scale(1.05) translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+  /* box-shadow: offset-x offset-y blur rgba; */
+}
+.btn:hover::after {
+  /* 
+  2nd State of pseudo element
+  pseudo element after for .btn:hover state
+  Make pseudo element grow && fade-out 
+  .btn::after = parent
+  .btn:hover::after = child
+  */
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn:active, .btn:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+.btn--white {
+  background-color: #fff;
+  color: rgb(84, 87, 37);
+}
+.btn--white::after {
+  background-color: white;
+  color: rgb(84, 87, 37);
+}
+.btn--green {
+  background-color: rgb(234, 237, 192);
+  color: #fff;
+}
+.btn--green::after {
+  background-color: rgb(234, 237, 192);
+}
+.btn::after {
+  /* Must declare content && display properties */
+  content: "";
+  display: inline-block;
+  /* pseudo elements are treated as children */
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem; /* 100px */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* position: absolute need a reference 
+  from parent box with position: relative
+  In this case:
+  .btn::after (child) 
+  .btn (parent)
+  */
+  z-index: -1;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+}
+.btn--animated {
+  animation: moveInBottom 1s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: rgb(234, 237, 192);
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(234, 237, 192);
+  padding: 3px;
+  transition: all 0.15s;
+}
+.btn-text:hover {
+  transform: translateY(-0.3rem);
+  background-color: rgb(240, 240, 210);
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+}
+.btn-text:active {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+}
+
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 52rem;
+}
+.card__side {
+  overflow: hidden;
+  font-size: 2rem;
+  position: absolute;
+  height: 52rem;
+  transition: all 1s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+}
+.card__side--front {
+  background-color: #fff;
+}
+.card__side--back {
+  transform: rotateY(180deg);
+}
+.card__side--back-1 {
+  background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
+}
+.card__side--back-2 {
+  background-image: linear-gradient(to right bottom, rgb(240, 240, 210), rgb(220, 210, 170));
+}
+.card__side--back-3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
+}
+.card:hover .card__side--front {
+  transform: rotateY(-180deg);
+}
+.card:hover .card__side--back {
+  transform: rotateY(0);
+}
+.card__picture {
+  background-size: cover;
+  height: 23rem;
+  background-blend-mode: screen;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  /* Star shaped logos
+  -webkit-clip-path: polygon(50% 0, 60% 40%, 100% 40%, 65% 60%, 80% 100%, 
+  50% 80%, 20% 100%, 35% 60%, 0 40%, 40% 40%);
+  clip-path: polygon(50% 0, 60% 40%, 100% 40%, 65% 60%, 80% 100%, 
+  50% 80%, 20% 100%, 35% 60%, 0 40%, 40% 40%);
+  */
+}
+.card__picture--1 {
+  background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url("");
+}
+.card__picture--2 {
+  background-image: linear-gradient(to right bottom, rgb(240, 240, 210), rgb(220, 210, 170)), url("");
+}
+.card__picture--3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url("");
+}
+.card__heading {
+  font-size: 2.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: right;
+  color: #fff;
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+  width: 75%;
+}
+.card__heading-span {
+  padding: 1rem 1.5rem;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.card__heading-span--1 {
+  background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85));
+}
+.card__heading-span--2 {
+  background-image: linear-gradient(to right bottom, rgba(240, 240, 210, 0.85), rgba(220, 210, 170, 0.85));
+}
+.card__heading-span--3 {
+  background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85));
+}
+.card__details {
+  padding: 3rem;
+}
+.card__details ul {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+}
+.card__details ul li {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+.card__cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+}
+.card__price-box {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 8rem;
+}
+.card__price-only {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.card__price-value {
+  font-size: 6rem;
+  font-weight: 100;
+}
+
+.composition {
+  position: relative;
+}
+.composition__photo {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  transition: all 0.2s;
+  outline-offset: 2rem;
+}
+.composition__photo--p1 {
+  left: 0;
+  top: -2rem;
+}
+.composition__photo--p2 {
+  right: 0;
+  top: 2rem;
+}
+.composition__photo--p3 {
+  left: 20%;
+  top: 10rem;
+}
+.composition__photo:hover {
+  outline: 1.5rem solid rgb(234, 237, 192);
+  transform: scale(1.05) translateY(-0.5rem);
+  box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+.composition:hover .composition__photo:not(:hover) {
+  transform: scale(0.9) translateY(0.5rem);
+}
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in;
+}
+.feature-box__icon {
+  font-size: 6rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  background-image: linear-gradient(to right, rgb(240, 240, 210), rgb(220, 210, 170));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.feature-box__text {
+  font-size: 1.6rem;
+}
+.feature-box:hover {
+  transform: translateY(-1.5rem) scale(1.03);
+}
+
+.form__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.form__input {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 90%;
+  display: block;
+  transition: all 0.3s ease;
+}
+.form__input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid rgb(234, 237, 192);
+}
+.form__input:focus:invalid {
+  border-bottom: 3px solid orangered;
+}
+.form__input::-webkit-input-placeholder {
+  color: rgb(104, 107, 50);
+}
+.form__label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  transition: all 0.3s;
+}
+.form__input:-moz-placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+.form__radio-group {
+  width: 49%;
+  display: inline-block;
+}
+.form__radio-input {
+  display: none;
+}
+.form__radio-label {
+  font-size: 1.6rem;
+  cursor: pointer;
+  position: relative;
+  padding-left: 4.5rem;
+}
+.form__radio-label .form__radio-button {
+  display: inline-block;
+  height: 3rem;
+  width: 3rem;
+  border: 5px solid rgb(234, 237, 192);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -0.4rem;
+}
+.form__radio-label .form__radio-button::after {
+  display: block;
+  content: "";
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(234, 237, 192);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
+  opacity: 1;
+}
+
+.story {
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.2);
+  background-color: #eaedc0;
+  border-radius: 3px;
+  padding-inline: 3rem;
+  font-size: 1.6rem;
+}
+.story__shape {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  float: left;
+  shape-outside: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  transform: translateX(-3rem) skewX(12deg);
+}
+.story__img {
+  height: 100%;
+  transform: translateX(-4rem) scale(1.4);
+  backface-visibility: hidden;
+  transition: all 0.5s ease;
+}
+.story__caption {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 15%);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  opacity: 0;
+  transition: all 0.5s ease;
+  backface-visibility: hidden;
+  filter: contrast(1.05);
+}
+.story:hover .story__caption {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+.story:hover .story__img {
+  transform: translateX(-4rem) scale(1);
+  filter: blur(3px) hue-rotate(60deg) brightness(100%) contrast(1);
+}
+
+.row {
+  /*
+  If we have enough space, we will have the specified width
+  If we have insufficient space, we will have width: 100%;
+  */
+  margin: 0 auto;
+  /*
+  To apply effects to all columns
+  using attributes selector
+  e.g. 
+  [alt="Logo"] {
+  }
+  */
+}
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row [class^=col-] {
+  float: left;
+}
+.row [class^=col-]:not(:last-child) {
+  margin-right: 6rem;
+}
+.row .col-1-of-2 {
+  width: calc((100% - 6rem) / 2);
+}
+.row .col-1-of-3 {
+  width: calc((100% - 2* 6rem) / 3);
+}
+.row .col-1-of-4 {
+  width: calc((100% - 3* 6rem) / 4);
+}
+.row .col-2-of-3 {
+  width: calc(2*((100% - 2* 6rem)/3) + 6rem);
+}
+.row .col-2-of-4 {
+  width: calc(2*((100% - 3* 6rem)/4) + 6rem);
+}
+.row .col-3-of-4 {
+  width: calc(3*((100% - 3* 6rem)/4) + 2*6rem);
+}
+
+.header {
+  height: 95vh; /* To almost 100% */
+  background-image: linear-gradient(to right bottom, rgba(240, 240, 210, 0.8), rgba(220, 210, 170, 0.8)), url("");
+  background-size: cover; /* to fit the box */
+  background-position: top; /* Top of img always stays top */
+  position: relative; /* parent of .logo-box */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* clip-path: polygon(0 0, 100% 50%, 0 100%); */
+}
+.header__logo-box {
+  position: absolute; /* parent = .header */
+  top: 4rem; /* 40px */
+  left: 4rem; /* 40px */
+}
+.header__logo {
+  height: 3.5rem; /* 35px */
+}
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  text-align: center;
+}
+
+@media only screen and (max-width: 450px) {
+  .footer {
+    background-color: rgb(94, 96, 64);
+  }
+  .footer__session {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  /*
+  .header {
+  height: 95vh; // To almost 100%
+  background-image: linear-gradient(
+      to right bottom, 
+      rgba($color-primary-light, 0.8), 
+      rgba($color-primary-dark, 0.8)), 
+      url('../img/hero.jpg');
+      background-size: cover; // to fit the box
+      background-position: top; // Top of img always stays top
+      position: relative; // parent of .logo-box 
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  */
+  margin-top: -20vh;
+}
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom, rgba(240, 240, 210, 0.8), rgba(220, 210, 170, 0.8)), url("");
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+}
+.section-features > * {
+  transform: skewY(7deg);
+}
+
+.section-tours {
+  background-color: #f7f7f7;
+  padding: 25rem 0 15rem 0;
+  margin-top: -10vh;
+}
+
+.section-stories {
+  position: relative;
+  padding: 15rem 0;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.section-book {
+  position: relative;
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, rgb(240, 240, 210), rgb(220, 210, 170));
+  background-color: transparent;
+}
+
+.book {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url("");
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+  height: 50rem;
+}
+.book__form {
+  width: 50%;
+  padding: 6rem;
+}/*# sourceMappingURL=main.css.map */

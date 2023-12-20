@@ -1,0 +1,35 @@
+/* Normalize browsers - Basic Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* font-size: 10px;
+    now 1rem = 10px
+    font-size: 100% => 16px
+
+    62.5% * 16px = 10px = 1rem
+    */
+    //font-size: 62.5%; 
+    font-size: 100%;
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    //-webkit-font-kerning: normal;
+    font-feature-settings: "liga", "kern";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background-color: rgba($color-white, 0.8);
+    height: 100%;
+    margin: 0;
+}
+
+/* To be inherited by child elements */
+body {
+    box-sizing: border-box;
+}
