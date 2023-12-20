@@ -1,0 +1,59 @@
+{
+  "name": "com.igsl.berlintes",
+  "version": "1.0.0",
+  "description": "Berlin Testing App",
+  "main": "Index.html",
+  "groupId": "com.igsl",
+  "artifactId": "berlintes",
+  "bundleName": "com.igsl.berlintes",
+  "keywords": [
+    "Berlin Testing App",
+    "BMC Software Inc."
+  ],
+  "author": "BMC Software Inc.",
+  "license": "Commercial",
+  "scripts": {
+    "ng": "nx",
+    "nx": "nx",
+    "start": "yarn run serve:webpack",
+    "build": "yarn run build:webpack",
+    "build:webpack": "set NG_BUILD_MANGLE=false && ng build --prod  --extra-webpack-config webpack.config.js -o",
+    "serve:webpack": "set NG_BUILD_MANGLE=false && ng serve  --extra-webpack-config webpack.config.js -o",
+    "test": "ng test",
+    "lint": "nx workspace-lint && ng lint",
+    "e2e": "ng e2e",
+    "affected:apps": "nx affected:apps",
+    "affected:libs": "nx affected:libs",
+    "affected:build": "nx affected:build",
+    "affected:e2e": "nx affected:e2e",
+    "affected:test": "nx affected:test",
+    "affected:lint": "nx affected:lint",
+    "affected:dep-graph": "nx affected:dep-graph",
+    "affected": "nx affected",
+    "format": "nx format:write",
+    "format:write": "nx format:write",
+    "format:check": "nx format:check",
+    "update": "ng update @nrwl/workspace",
+    "update:check": "ng update",
+    "workspace-schematic": "nx workspace-schematic",
+    "dep-graph": "nx dep-graph",
+    "help": "nx help",
+    "preinstall": "node preinstall",
+    "postinstall": "node postinstall && ngcc --properties es2015 browser module main"
+  },
+  "private": true,
+  "workspaces": ["libs/*"],
+  "resolutions": {
+    "tslib": "2.1.0",
+    "sass": "1.60.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@angular-devkit/schematics-cli": "0.1200.0-next.8",
+    "typescript": "4.2.4"
+  },
+  "optionalDependencies": {
+    "@helix/schematics": "file:./tools/rx-libs/platform/schematics"
+  }
+}
