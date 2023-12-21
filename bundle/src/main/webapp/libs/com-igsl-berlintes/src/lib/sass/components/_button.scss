@@ -20,8 +20,8 @@
         cursor: pointer;
     }
     &:hover {
-        transform: scale(1.005) translateY(-0.06rem);
-        box-shadow: 0.4rem 0.4rem 0.8rem rgba($color-aqua, .3), -2px -2px 0.8rem rgba($color-gold, .2);
+        transform: scale(1.005) translateY(-0.15rem);
+        box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-aqua, 0.3), -0.5rem -0.5rem -0.5rem -0.5rem rgba($color-gold, .3);
         /* box-shadow: offset-x offset-y blur rgba; */
         &::after {
             /* 
@@ -134,7 +134,7 @@
     }
     &:hover {
         transform: translateY(-0.06rem);
-        box-shadow: 0.4rem 0.4rem 0.8rem rgba($color-aqua, .3), -2px -2px 0.8rem rgba($color-gold, .2);
+        box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-aqua, 0.35), -0.5rem -0.5rem -0.5rem -0.5rem rgba($color-gold, .35);
         color: rgba($color-white, 0.8);
         background-color: rgba($footer, 0.9);
         /* box-shadow: offset-x offset-y blur rgba; */

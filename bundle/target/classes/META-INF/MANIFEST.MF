@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1703123524977
+Bnd-LastModified: 1703145940186
 Build-Jdk: 11.0.7
 Built-By: IGS
 Bundle-Activator: berlintest.bundle.MyApplication

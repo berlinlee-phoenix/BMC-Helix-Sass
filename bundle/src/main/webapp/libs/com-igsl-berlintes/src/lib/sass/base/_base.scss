@@ -1,4 +1,6 @@
 /* Normalize browsers - Basic Reset */
+@import "../abstracts/variables";
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -32,4 +34,10 @@ html {
 /* To be inherited by child elements */
 body {
     box-sizing: border-box;
+    margin: 0 auto;
+    padding-inline: 1% 1%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: rgba($footer, 1);
+    background-color: rgba($font-light, 1);
 }
