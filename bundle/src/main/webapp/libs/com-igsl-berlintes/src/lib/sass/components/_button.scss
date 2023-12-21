@@ -17,8 +17,13 @@
         font-size: $default-font-size;
         // Change <button> element
         border: none;
-        cursor: pointer;
+        cursor: pointer;        
     }
+
+    &:visited {
+        box-shadow: 0.4rem 0.4rem 0.4rem rgba(220,240,255, 0.8);;
+    }
+
     &:hover {
         transform: scale(1.005) translateY(-0.15rem);
         box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-aqua, 0.3), -0.5rem -0.5rem -0.5rem -0.5rem rgba($color-gold, .3);
@@ -88,34 +93,16 @@
         animation-fill-mode: backwards;
     }
   }
-  .btn-text {
-    &:link,
-    &:visited {
-        font-size: $default-font-size;
-        color: $color-primary;
-        display: inline-block;
-        text-decoration: none;
-        border-bottom: 1px solid $color-primary;
-        padding: 3px;
-        transition: all .15s;
-    }
-    &:hover {
-        transform: translateY(-0.05rem);
-        background-color: $color-primary-light;
-        color: $color-white;
-        box-shadow: 0 1rem 2rem rgba($color-gold, .3);
-        border-radius: 1rem;
-    }
-    &:active {
-        box-shadow: 0 1rem 2rem rgba($color-aqua, .3);
-        transform: translateY(0);
-    }
-  }
 
   // Secondary buttons
   .btn-secondary {
     animation: moveInBottom 1s ease-out .75s;
     animation-fill-mode: backwards;
+
+    &:visited {
+        box-shadow: 0.4rem 0.4rem 0.4rem rgba(220,240,255, 0.8);;
+    }
+
     &, // For <button>
     /* pseudo class for <a> only */
     &:link, 
@@ -205,7 +192,12 @@
         animation-fill-mode: backwards;
     }
   }
+  
   .btn-text {
+    &:visited {
+        box-shadow: 0.4rem 0.4rem 0.4rem rgba(220,240,255, 0.8);;
+    }
+
     &:link,
     &:visited {
         font-size: $default-font-size;
