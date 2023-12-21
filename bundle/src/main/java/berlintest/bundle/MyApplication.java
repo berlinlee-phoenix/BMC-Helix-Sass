@@ -3,7 +3,7 @@
  * and proprietary information of BMC Software, Inc ("Confidential Information"). You shall not
  * disclose such Confidential Information and shall use it only in accordance with the terms of the
  * license agreement between you and BMC Software, Inc.
- */
+*/
 
 package berlintest.bundle;
 
@@ -20,8 +20,8 @@ public class MyApplication extends RxBundle {
      */
     @Override
     protected void register() {
-        //
-        // TODO: Register static web resources and framework extensions.
+        // Todo
+        // Register static web resources and framework extensions
         //
         // registerService(new MyService());
         //

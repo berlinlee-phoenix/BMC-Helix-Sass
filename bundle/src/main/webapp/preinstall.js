@@ -9,7 +9,7 @@ if (!fs.existsSync(rxLibsPath)) {
   fs.mkdirSync(rxLibsPath, { recursive: true });
 }
 
-function isSDKInstalled() {
+function isSdkInstalled() {
   var exists = fs.existsSync(sdkLocation);
   var stats = exists && fs.statSync(sdkLocation);
 
@@ -23,12 +23,11 @@ function copyDirectoryContent(sourceFolder, destinationFolder) {
 
   if (exists && isDirectory) {
     if (!fs.existsSync(destinationFolder)) {
-      fs.mkdirSync(destinationFolder);
+      fs.mkdirSync(destinationFolder, { recursive: true }); // added cause of Error: ENOENT: no such file or directory, mkdir './tools/rx-libs/platform'
     }
 
-    fs.readdirSync(sourceFolder).forEach(function(childItemName) {
-      copyDirectoryContent(path.join(sourceFolder, childItemName),
-        path.join(destinationFolder, childItemName));
+    fs.readdirSync(sourceFolder).forEach(function (childItemName) {
+      copyDirectoryContent(path.join(sourceFolder, childItemName), path.join(destinationFolder, childItemName));
     });
   } else {
     fs.copyFileSync(sourceFolder, destinationFolder);
@@ -48,16 +47,46 @@ function shouldCopySdkArtefacts() {
   return result;
 }
 
+// While upgrading the SDK, instead of running yarn install with the outdated package.json,
+// the following method will revert package.json to a state when the project was first created,
+// so it has minimum dependencies on install schematics. The schematic will then update package.json
+// to the latest in sync with the SDK.
+function reduceDependenciesToMinForUpgrade() {
+  const packageJson = require('./package.json');
+
+  for (const dependenciesKey in packageJson.dependencies) {
+    if (packageJson.dependencies[dependenciesKey].startsWith('file:')) {
+      delete packageJson.dependencies[dependenciesKey];
+    }
+  }
+
+  fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2));
+}
+
 function copyRxLibraries() {
-  if (!isSDKInstalled()) {
-    console.error('Please ensure RX_SDK_HOME environment variable is pointing to the Helix Platform SDK location, then run the command again.');
+  if (!isSdkInstalled()) {
+    console.error(
+      'Ensure RX_SDK_HOME environment variable is pointing to the Helix Platform SDK location, then run the command again.'
+    );
     process.exit(1);
   }
 
   if (!shouldCopySdkArtefacts()) {
-    copyDirectoryContent(path.join(sdkLocation, '/client/target/web-build/webapp/dist/libs/platform/'), rxLibsPath + '/platform');
-    copyDirectoryContent(path.join(sdkLocation, '/client/target/web-build/webapp/dist/libs/com-bmc-arsys-rx-innovationstudio/'), rxInnovationStudioPath);
-    copyDirectoryContent(path.join(sdkLocation, '/client/target/web-build/webapp/dist/scripts/'), path.join(appsPath, '../scripts'));
+    fs.rmdir(rxLibsPath, { recursive: true }, () => {
+      copyDirectoryContent(
+        path.join(sdkLocation, '/client/target/web-build/webapp/dist/libs/platform/'),
+        rxLibsPath + '/platform/'
+      );
+      copyDirectoryContent(
+        path.join(sdkLocation, '/client/target/web-build/webapp/dist/libs/com-bmc-arsys-rx-innovationstudio/'),
+        rxInnovationStudioPath
+      );
+      copyDirectoryContent(
+        path.join(sdkLocation, '/client/target/web-build/webapp/dist/scripts/'),
+        path.join(appsPath, '../scripts')
+      );
+      reduceDependenciesToMinForUpgrade();
+    });
   }
 }
 

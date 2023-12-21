@@ -5,13 +5,13 @@ module.exports = {
     chunkIds: 'named',
     moduleIds: 'named',
     sideEffects: true,
-    minimize: true,
-    namedModules: true,
-    usedExports: true,
+    usedExports: false,
     providedExports: false
   },
-  externals: {
-    rxjs: 'rxjs',
-    lodash: '_'
-  }
-}
+  externals: [
+    {
+      rxjs: 'rxjs',
+      lodash: '_'
+    }
+  ]
+};

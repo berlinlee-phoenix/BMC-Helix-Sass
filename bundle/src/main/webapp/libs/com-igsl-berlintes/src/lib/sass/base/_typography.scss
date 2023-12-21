@@ -8,6 +8,22 @@ body {
     box-sizing: border-box;
 }
 
+.h1 {
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.1;
+    color: rgba($footer-dark, 0.7);
+    transition: all 0.5s ease-out;
+    &:hover {
+        background-image: linear-gradient(to bottom right, rgba($color-gold, 0.1), rgba($color-aqua, 0.6), rgba($footer-light, 0.7), rgba($footer, 0.9), rgba($footer-dark, 1), rgba($footer, 1), rgba($footer-light, 0.8), rgba($color-aqua, 0.6), rgba($color-gold, 0.1));
+        color: rgba($color-aqua, 0.9);
+    }
+    &:active {
+        color: rgba($footer-dark, 0.7);
+        background-color: "";
+    }
+}
+
 .heading-primary {
     color: $color-white;
     text-transform: uppercase;

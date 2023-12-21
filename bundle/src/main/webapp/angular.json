@@ -3,6 +3,44 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
+    "com-igsl-berlintes": {
+      "projectType": "library",
+      "root": "libs/com-igsl-berlintes",
+      "sourceRoot": "libs/com-igsl-berlintes/src",
+      "prefix": "com.igsl.berlintes",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/com-igsl-berlintes"],
+          "options": {
+            "project": "libs/com-igsl-berlintes/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/com-igsl-berlintes/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/com-igsl-berlintes/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/com-igsl-berlintes"],
+          "options": {
+            "jestConfig": "libs/com-igsl-berlintes/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/com-igsl-berlintes/src/**/*.ts", "libs/com-igsl-berlintes/src/**/*.html"]
+          }
+        }
+      }
+    },
     "shell": {
       "root": "apps/shell/",
       "sourceRoot": "apps/shell/src",
@@ -40,7 +78,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "scripts/ckeditor-4.14.1/",
+                "input": "scripts/ckeditor-4.20.0/",
                 "output": "assets/libs/ckeditor/"
               },
               {
@@ -52,34 +90,48 @@
                 "glob": "**/*",
                 "input": "apps/shell/src/assets/images/",
                 "output": "assets/libs/ckeditor/plugins/expression-editor/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/com-igsl-berlintes/src/lib/i18n/",
+                "output": "assets/i18n/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/com-igsl-berlintes/src/lib/assets/",
+                "output": "assets/libs/berlintes/resources/"
               }
             ],
             "styles": [
               "apps/shell/src/styles.scss",
-              "scripts/rappid-3.1.1/rappid.min.css"
+              "scripts/rappid-3.1.1/rappid.min.css",
+              {
+                "input": "libs/com-igsl-berlintes/src/lib/styles/com-igsl-berlintes.scss",
+                "bundleName": "com-igsl-berlintes"
+              }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "styles"
-              ]
+              "includePaths": ["styles"]
             },
             "scripts": [
-              "scripts/rxjs-6.5.4/rxjs.umd.min.js",
+              "scripts/rxjs-6.6.7/rxjs.umd.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/lodash/lodash.min.js",
               "node_modules/d3/dist/d3.min.js",
               "node_modules/backbone/backbone-min.js",
-              "scripts/ckeditor-4.14.1/ckeditor.min.js",
+              "scripts/ckeditor-4.20.0/ckeditor.min.js",
               "scripts/rappid-3.1.1/rappid.min.js"
             ],
             "extractLicenses": true,
             "crossOrigin": "use-credentials",
             "allowedCommonJsDependencies": [
               "@bmc-ux/adapt-angular",
+              "@bmc-ux/obsolete",
               "lodash",
               "moment-es6",
               "hammerjs",
               "bignumber.js",
+              "backbone",
               "element-resize-detector",
               "file-saver",
               "css-element-queries",
@@ -100,7 +152,8 @@
               "@angular/common/locales/es",
               "@angular/common/locales/de",
               "@angular/common/locales/da"
-            ]
+            ],
+            "inlineStyleLanguage": "scss"
           },
           "configurations": {
             "production": {
@@ -114,7 +167,16 @@
                   "with": "apps/shell/src/app/app.module.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "fonts": {
+                  "inline": true
+                },
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "outputHashing": "none",
               "sourceMap": true,
               "extractCss": true,
@@ -127,24 +189,41 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "10mb",
-                  "maximumError": "30mb"
+                  "maximumWarning": "25mb",
+                  "maximumError": "50mb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "ngx-build-plus:dev-server",
-          "options": {
-            "browserTarget": "shell:build",
-            "proxyConfig": "proxy.conf.js"
-          },
           "configurations": {
             "production": {
               "browserTarget": "shell:build:production"
+            },
+            "rsso-debug": {
+              "browserTarget": "shell:build:development",
+              "proxyConfig": "rsso-proxy.conf.js",
+              "ssl": true,
+              "sslCert": "tools/certificate/bmc-rsso-debug-ca.crt",
+              "sslKey": "tools/certificate/bmc-rsso-debug-ca.key"
+            },
+            "development": {
+              "browserTarget": "shell:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -153,16 +232,9 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "apps/shell/tsconfig.app.json",
-              "apps/shell/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/shell/**"
-            ]
+            "lintFilePatterns": ["apps/shell//src/**/*.ts", "apps/shell//src/**/*.html"]
           }
         },
         "test": {
@@ -189,6 +261,19 @@
       "framework": "angular"
     },
     "@nrwl/schematics:library": {
+      "style": "scss"
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
       "style": "scss"
     }
   },
