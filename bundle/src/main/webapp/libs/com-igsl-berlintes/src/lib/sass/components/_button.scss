@@ -1,130 +1,32 @@
 @import "../abstracts/variables";
 
 .btn {
-    animation: moveInBottom 1s ease-out .75s;
+    animation: moveInBottom 0.5s ease-out .5s;
     animation-fill-mode: backwards;
+
     &, // For <button>
     /* pseudo class for <a> only */
     &:link, 
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 0.75rem; /* padding: 15px 40px */
-        //display: inline-block;
-        border-radius: 6.25rem; /* 100px */
-        transition: all .1s ease-in;
-        position: relative;
-        font-size: $default-font-size;
-        // Change <button> element
-        border: none;
-        cursor: pointer;        
-    }
-
-    &:visited {
-        box-shadow: 0.4rem 0.4rem 0.4rem rgba(220,240,255, 0.8);;
-    }
-
-    &:hover {
-        transform: scale(1.005) translateY(-0.15rem);
-        box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-aqua, 0.3), -0.5rem -0.5rem -0.5rem -0.5rem rgba($color-gold, .3);
-        /* box-shadow: offset-x offset-y blur rgba; */
-        &::after {
-            /* 
-            2nd State of pseudo element
-            pseudo element after for .btn:hover state
-            Make pseudo element grow && fade-out 
-            .btn::after = parent
-            .btn:hover::after = child
-            */
-            //transform: scaleX(1.4) scaleY(1.6)
-            transform: scaleX(1.4) scaleY(1.6);
-            opacity: 0;
-        }
-    }
-    &:active, &:focus {
-        outline: none;
-        transform: translateY(-0.0625rem);
-        box-shadow: 0.25rem 0.5rem 1rem rgba($color-aqua, .3);
-    }
-    &--white {
-        background-color: $color-white;
-        color: $color-secondary-dark;
-        &::after {
-            background-color: white;
-            color: $color-dark-grey;
-        }
-    }
-    &--green {
-        background-color: $color-primary;
-        color: $color-white;
-        &::after {
-            background-color: $color-primary;
-        }
-    }
-    /* 
-    Initial State of pseudo element
-    .btn = parent
-    .btn::after = child
-    */ 
-    &::after {
-        /* Must declare content && display properties */
-        content: "";
+        padding: 0.5rem 0.5rem; /* padding: 1.5rem 4rem 15px 40px */
         display: inline-block;
-        /* pseudo elements are treated as children */
-        height: 100%;
-        width: 100%;
         border-radius: 10rem; /* 100px */
-        position: absolute;
-        top: 0;
-        left: 0;
-        /* position: absolute need a reference 
-        from parent box with position: relative
-        In this case:
-        .btn::after (child) 
-        .btn (parent)
-        */
-        z-index: -1;
-        transition: all .4s ease;
-        -webkit-transition: all .4s ease;
-    }
-    /* Only Discover our tour button will have animation */
-    &--animated {
-        animation: moveInBottom 1s ease-out .75s;
-        animation-fill-mode: backwards;
-    }
-  }
-
-  // Secondary buttons
-  .btn-secondary {
-    animation: moveInBottom 1s ease-out .75s;
-    animation-fill-mode: backwards;
-
-    &:visited {
-        box-shadow: 0.4rem 0.4rem 0.4rem rgba(220,240,255, 0.8);;
-    }
-
-    &, // For <button>
-    /* pseudo class for <a> only */
-    &:link, 
-    &:visited {
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 0.9375rem 2.5rem; /* padding: 15px 40px */
-        //display: inline-block;
-        border-radius: 6.25rem; /* 100px */
         transition: all .1s ease-in;
         position: relative;
         font-size: $default-font-size;
+
         // Change <button> element
         border: none;
         cursor: pointer;
     }
+
     &:hover {
-        transform: translateY(-0.06rem);
-        box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-aqua, 0.35), -0.5rem -0.5rem -0.5rem -0.5rem rgba($color-gold, .35);
-        color: rgba($color-white, 0.8);
-        background-color: rgba($footer, 0.9);
+        transform: scale(1.01) translateY(-0.2rem);
+        box-shadow: 0 1rem 2rem rgba($color-aqua, .6); 
         /* box-shadow: offset-x offset-y blur rgba; */
+
         &::after {
             /* 
             2nd State of pseudo element
@@ -133,33 +35,36 @@
             .btn::after = parent
             .btn:hover::after = child
             */
-            //transform: scaleX(1.4) scaleY(1.6)
             transform: scaleX(1.4) scaleY(1.6);
             opacity: 0;
         }
     }
+
     &:active, &:focus {
         outline: none;
-        transform: translateY(-0.0625rem);
-        box-shadow: 0.25rem 0.5rem 1rem rgba($color-gold, .3);
-        background-color: rgba($color-aqua, 0.8);
-        color: rgba($footer-dark, 0.8);
+        transform: translateY(-0.1rem);
+        box-shadow: 0.5rem 0.5rem 0.5rem rgba($color-aqua, .6), 0.5rem 0.5rem 0.5rem rgba($color-gold, .3); 
     }
+
     &--white {
         background-color: $color-white;
         color: $color-secondary-dark;
+
         &::after {
             background-color: white;
             color: $color-dark-grey;
         }
     }
+
     &--green {
         background-color: $color-primary;
         color: $color-white;
+
         &::after {
             background-color: $color-primary;
         }
     }
+
     /* 
     Initial State of pseudo element
     .btn = parent
@@ -186,18 +91,114 @@
         transition: all .4s ease;
         -webkit-transition: all .4s ease;
     }
+
+    /* Only Discover our tour button will have animation */
+    &--animated {
+        animation: moveInBottom 0.5s ease-out .5s;
+        animation-fill-mode: backwards;
+    }
+}
+
+.btn-secondary {
+    animation: moveInBottom 0.5s ease-out .55s;
+    animation-fill-mode: backwards;
+
+    &, // For <button>
+    /* pseudo class for <a> only */
+    &:link, 
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 0.5rem 0.5rem; /* padding: 1.5rem 4rem 15px 40px */
+        display: inline-block;
+        border-radius: 10rem; /* 100px */
+        transition: all .1s ease-in;
+        position: relative;
+        font-size: $default-font-size;
+
+        // Change <button> element
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        transform: scale(1.01) translateY(-0.2rem);
+        box-shadow: 0.5rem 0.5rem 0.5rem rgba($color-aqua, .6), 0.5rem 0.5rem 0.5rem rgba($color-gold, .3); 
+        /* box-shadow: offset-x offset-y blur rgba; */
+
+        &::after {
+            /* 
+            2nd State of pseudo element
+            pseudo element after for .btn:hover state
+            Make pseudo element grow && fade-out 
+            .btn::after = parent
+            .btn:hover::after = child
+            */
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active, &:focus {
+        outline: none;
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, .3);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-secondary-dark;
+
+        &::after {
+            background-color: white;
+            color: $color-dark-grey;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
+    /* 
+    Initial State of pseudo element
+    .btn = parent
+    .btn::after = child
+    */ 
+    &::after {
+        /* Must declare content && display properties */
+        content: "";
+        display: inline-block;
+        /* pseudo elements are treated as children */
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem; /* 100px */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* position: absolute need a reference 
+        from parent box with position: relative
+        In this case:
+        .btn::after (child) 
+        .btn (parent)
+        */
+        z-index: -1;
+        transition: all .4s ease;
+        -webkit-transition: all .4s ease;
+    }
+
     /* Only Discover our tour button will have animation */
     &--animated {
         animation: moveInBottom 1s ease-out .75s;
         animation-fill-mode: backwards;
     }
-  }
-  
-  .btn-text {
-    &:visited {
-        box-shadow: 0.4rem 0.4rem 0.4rem rgba(220,240,255, 0.8);;
-    }
+}
 
+.btn-text {
     &:link,
     &:visited {
         font-size: $default-font-size;
@@ -208,15 +209,17 @@
         padding: 3px;
         transition: all .15s;
     }
+
     &:hover {
-        transform: translateY(-0.05rem);
+        transform: translateY(-0.3rem);
         background-color: $color-primary-light;
         color: $color-white;
-        box-shadow: 0 1rem 2rem rgba($color-gold, .3);
+        box-shadow: 0 1rem 2rem rgba($color-black, .3);
         border-radius: 1rem;
     }
+
     &:active {
-        box-shadow: 0 1rem 2rem rgba($color-aqua, .3);
+        box-shadow: 0 1rem 2rem rgba($color-black, .3);
         transform: translateY(0);
     }
-  }
+}

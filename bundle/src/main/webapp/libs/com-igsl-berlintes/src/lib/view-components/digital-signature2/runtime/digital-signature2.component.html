@@ -1,0 +1,27 @@
+<div>
+  <signature-pad class="signaturepad"
+                 #signaturePad
+                 [options]="signaturePadOptions"
+                 (onBeginEvent)="drawStart()"
+                 (onEndEvent)="drawComplete()">
+  </signature-pad>
+</div>
+
+<div>
+  <!-- <button adapt-button btn-type="primary"
+          size="default"
+          (click)="addSignature()">
+    <span>Add signature</span>
+  </button> -->
+  <!-- <button class="btn frosted" 
+          adapt-button btn-type="secondary"
+          size="default"
+          (click)="clearSignature()">
+    <span class="frosted__children">Clear signature</span>
+  </button> -->
+  <button class="btn frosted" 
+          size="default"
+          (click)="clearSignature()">
+    <span class="frosted__children">Clear signature</span>
+  </button>
+</div>
