@@ -23,7 +23,7 @@
     }
 
     &:hover {
-        transform: scale(1.01) translateY(-0.2rem);
+        transform: scale(1.01) translateY(-0.15rem);
         box-shadow: 0 1rem 2rem rgba($color-aqua, .6); 
         /* box-shadow: offset-x offset-y blur rgba; */
 
@@ -42,7 +42,7 @@
 
     &:active, &:focus {
         outline: none;
-        transform: translateY(-0.1rem);
+        transform: translateY(-0.05rem);
         box-shadow: 0.5rem 0.5rem 0.5rem rgba($color-aqua, .6), 0.5rem 0.5rem 0.5rem rgba($color-gold, .3); 
     }
 

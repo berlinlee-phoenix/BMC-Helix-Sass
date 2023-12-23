@@ -1,17 +1,27 @@
-// Frosted Glass Effect
-// To be applied to a <div>
-// Usage 
-//<div className="frosted">
-//  <p className="frosted__children">
 @import "../abstracts/variables";
 
-.frosted {
-    // body
+.a-product {
+    display: flex;
+    flex: 0 0 auto;
+    padding-right: 15px;
+    padding-bottom: 0;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.3125rem;
+    line-height: 1.875rem;
+    border: 0;
+    direction: ltr;
+
+    transition: all 1s ease-in-out;
+
+    // Frosted
     background: url();
     background-size: cover;
     background-attachment: fixed;
 
-    &__children {
+    &:hover {
+        // Frosted when hovered
         border-radius: 1.6rem;
         background: linear-gradient(to bottom right, $font-light, $font, $font-dark, 0.8);
         //box-shadow: 0 0 3rem 0 rgba(0, 0, 0, 0.2);
@@ -40,5 +50,4 @@
             z-index: -1;
         }
     }
-    
 }

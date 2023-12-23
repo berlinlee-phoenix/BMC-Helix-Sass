@@ -21,15 +21,15 @@
     background-attachment: fixed;
 
     &-tabs {
+        //color: rgba($color-secondary-dark, 1);
         background-color: rgba($color-aqua, 1);
         padding: 0 1rem;
-        box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-gold, 0.6), 0.5rem 0.5rem 0.5rem 0.5rem rgba($color-aqua, .6);
         
         // Frosted Children
         border-radius: 1.6rem;
         background: linear-gradient(to bottom right, $font-light, $font, $font-dark, 0.8);
         //box-shadow: 0 0 3rem 0 rgba(0, 0, 0, 0.2);
-        box-shadow: 0.3rem 0.3rem 0.3rem rgba($font-light, 1);
+        //box-shadow: 0.3rem 0.3rem 0.3rem rgba($font-light, 1);
         backdrop-filter: blur(1.5rem);
         -webkit-backdrop-filter: blur(1.5rem);
         border: 1px solid rgba($font-dark, 0.803);
@@ -38,6 +38,21 @@
         overflow: hidden;
         // Allow contents to be seen & hovered above the glass
         z-index: 1;
+
+        &:hover {
+            // Frosted Children
+            border-radius: 1.6rem;
+            background: linear-gradient(to bottom right, $font-light, $font, $font-dark, 0.8);
+            box-shadow: 0 0 3rem 0 rgba($font-aqua, 0.8);
+            backdrop-filter: blur(1.5rem);
+            -webkit-backdrop-filter: blur(1.5rem);
+            border: 1px solid rgba($font-dark, 0.803);
+            position: relative;
+            background: inherit;
+            overflow: hidden;
+            // Allow contents to be seen & hovered above the glass
+            z-index: 1;
+        }
 
         // Frosted Container:before
         &:before {
@@ -66,6 +81,7 @@
         
     }
     &-link {
+        //color: rgba($color-secondary-dark, 1);
         font-size: 1rem;
         padding: 1rem 2rem;
 
@@ -81,6 +97,7 @@
     }
     // All border-radius
     &-tabs, &-item, &-link {
+        color: rgba($color-secondary-dark, 1);
         border-radius: 10rem;
     }
 }

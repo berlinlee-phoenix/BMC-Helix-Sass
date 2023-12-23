@@ -1,0 +1,19 @@
+@import "../abstracts/variables";
+
+.igs-icon {
+    background-image: linear-gradient(to right bottom, rgba($color-primary-dark, 0.3), rgba($color-primary, 0.3), rgba($color-primary-light, 0.3), rgba($font-dark, 0.3), rgba($font, 0.3), rgba($font-light, 0.3), rgba($color-aqua, 0.3)), url("https://static.wixstatic.com/media/6fc253_e6e764b90b464c1598c6c9d985bd732b~mv2.png/v1/fill/w_202,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Integrated%20Global%20Solutions%20Limited.png");
+    background-size: cover;
+    position: relative;
+    background-position: top;
+    //box-shadow: 0 0 3rem 1rem rgba($color-aqua, 0.8);
+
+    &:hover {
+        filter: contrast(1.05);
+        scale: 1.05;
+    }
+
+    &:active, &:visited, &::after {
+        scale: 1.0;
+    }
+}
+

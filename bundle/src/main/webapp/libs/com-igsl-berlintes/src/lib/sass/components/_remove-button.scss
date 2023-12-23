@@ -1,0 +1,49 @@
+// This is for UI view designer drag & drop mode
+// The Container cross when you need to remove a UI
+
+// .remove-button[_ngcontent-oct-c428] {
+//     color: #fff;
+//     scale: 1.05;
+// }
+@import "../abstracts/variables";
+
+.remove-button {
+    color: #fff;
+    scale: 1;
+    transition: all 0.25s ease-out;
+
+    &:hover {
+        scale: 1.05;
+        box-shadow: 0 0 1rem 0.5rem rgba($color-green, 0.6);
+    }
+    &:active,&:visited {
+        scale: 1.0;
+        box-shadow: 0 0 0 0;
+        &:visited {
+            scale: 1.0;
+            box-shadow: 0 0 0 0;
+        }
+    }
+}
+
+.label {
+    transition: all 0.25s ease-out;
+
+    &:hover {
+        scale: 1.1;
+        box-shadow: 0 0 1rem 0.5rem rgba($color-green, 0.6);
+    }
+    &:active {
+        scale: 1.0;
+        box-shadow: 0 0 0 0;
+    }
+}
+
+.d-icon-dots {
+    transition: all 0.25s ease-out;
+
+    &:hover {
+        scale: 1.1;
+        box-shadow: 0 0 1rem 0.5rem rgba($color-aqua, 0.6);
+    }
+}
