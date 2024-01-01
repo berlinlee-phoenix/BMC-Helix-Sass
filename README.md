@@ -1,5 +1,5 @@
 ## BMC Helix innovation studio - SASS library
-[![Sass](https://uploads.sitepoint.com/wp-content/uploads/2013/03/1501598563featured-getting-started-sass.jpg)]
+![Sass](https://uploads.sitepoint.com/wp-content/uploads/2013/03/1501598563featured-getting-started-sass.jpg)
 
 ## Use this repo for your BMC Helix platform with 5 steps
 ## 1. git clone <.git>
