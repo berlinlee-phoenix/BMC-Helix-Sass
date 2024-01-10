@@ -15,6 +15,13 @@ import { SignaturePad } from 'angular2-signaturepad';
 // https://www.npmjs.com/package/signature_pad
 // https://github.com/szimek/signature_pad
 @Component({
+  // This is an Attribute selector
+  //selector: '[com-igsl-berlintes-new-signature]'
+
+  // This is a Class selector
+  //selector: '.com-igsl-berlintes-new-signature'
+  
+  // This is a Component selector
   selector: 'com-igsl-berlintes-new-signature',
   styleUrls: ['./new-signature.scss'],
   templateUrl: './new-signature.component.html'

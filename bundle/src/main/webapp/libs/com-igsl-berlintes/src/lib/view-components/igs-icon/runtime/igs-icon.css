@@ -1,0 +1,15 @@
+.container--img {
+  background-image: linear-gradient(to right bottom, rgba(137, 149, 205, 0.8), rgba(157, 169, 225, 0.8), rgba(177, 189, 235, 0.8), rgba(212, 217, 226, 0.8), rgba(232, 237, 246, 0.8), rgba(242, 242, 251, 0.8), rgba(220, 230, 250, 0.8)), url("https://static.wixstatic.com/media/6fc253_e6e764b90b464c1598c6c9d985bd732b~mv2.png/v1/fill/w_202,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Integrated%20Global%20Solutions%20Limited.png");
+  background-size: contain;
+  position: relative;
+  background-position: top;
+  transition: all 1s ease-in-out;
+}
+.container--img:hover {
+  transform: scale(1.05);
+  box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(255, 215, 0, 0.5), 0.5rem 0.5rem 0.5rem 0.5rem rgba(220, 230, 250, 0.5);
+}
+.container--img:active, .container--img:visited, .container--img::after {
+  transform: scale(1);
+  box-shadow: 0 0 0 0;
+}/*# sourceMappingURL=igs-icon.css.map */

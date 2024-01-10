@@ -29,15 +29,40 @@ html {
     background-color: rgba($color-white, 0.8);
     height: 100%;
     margin: 0;
+    min-width: 450px;
 }
 
 /* To be inherited by child elements */
 body {
+    min-width: 450px;
+    padding: 0.1rem 2%;
     box-sizing: border-box;
     margin: 0 auto;
-    padding-inline: 1% 1%;
+    //padding-inline: 1% 1%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.7;
     color: rgba($footer, 1);
     background-color: rgba($color-white, 1);
+}
+
+// rx-root {
+//     min-width: 450px;
+// }
+
+// Test 22.1.03 NAVIGATION ACTIONS VISIT DEPLOYED APPLICATION
+.py-3 {
+    min-width: 450px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+// Container for navigation panel & The list underneath
+.tab-container {
+    display: block;
+    min-width: 450px;
+    padding-inline: 2%;
+
+    &-carousel {
+        position: relative;
+    }
 }

@@ -8,15 +8,27 @@
 @import "../sass/components/containers";
 @import "../sass/base/base";
 @import "../sass/components/nav-tabs";
+@import "../sass/main.scss";
 
 // This is a css class that can be used to style a view component in View Designer
-.com-example-test210500-blue-container {
+.berlin-blue-container {
   border: 1px solid blue;
+  background-color: blue;
+}
+
+.berlin-red-container {
+  border: 1px solid red;
+  background-color: red;
+}
+
+.berlin-green-container {
+  border: 1px solid lawngreen;
+  background-color: lawngreen;
 }
 
 // This is an example how to style the rx-rating Adapt component.
 // It is used in the star-rating view component.
-.com-example-test210500-star-rating-red-star {
+.berlin-star-rating-red-star {
   // We override the Adapt default color for the star color.
   .a-rating__item {
     color: red;
@@ -24,7 +36,7 @@
 }
 
 // It is used in the star-rating view component.
-.com-example-test210500-star-rating-green-star {
+.berlin-star-rating-green-star {
   // We override the Adapt default color for the star color.
   .a-rating__item {
     color: greenyellow;
@@ -32,7 +44,7 @@
 }
 
 // This class is used to override Adapt panel style, adding a border around the panel.
-.com-example-test210500-override-rx-tab {
+.berlin-override-rx-tab {
   .tab-content {
     border-left: 1px solid $gray-300;
     border-bottom: 1px solid $gray-300;
@@ -40,12 +52,12 @@
   }
 }
 
-.com-example-test210500-wizard-container {
+.berlin-wizard-container {
   height: 750px;
   margin-top: -1rem;
 }
 
-.com-example-test210500-wizard-container-border {
+.berlin-wizard-container-border {
   height: 750px;
   border-left: 1px solid $gray-300;
   border-right: 1px solid $gray-300;
@@ -71,7 +83,7 @@
 }
 
 // Buttons effects
-.com-example-test210500-btn {
+.berlin-btn {
   &, // For <button>
   /* pseudo class for <a> only */
   &:link, 
@@ -167,7 +179,7 @@
   }
 }
 
-.com-example-test210500-btn-text {
+.berlin-btn-text {
   &:link,
   &:visited {
       font-size: $default-font-size;
@@ -194,7 +206,7 @@
 }
 
 // Frosted glass effects
-.com-example-test210500-frosted {
+.berlin-frosted {
   // body
   background: url();
   background-size: cover;
